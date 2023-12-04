@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Книги</title>
+    <link rel="stylesheet" th:href="@{/site.css}">
+</head>
+<header>
+    <div class="wrap">
+        <div class="header">
+            <div class="nav">
+                <ul>
+                    <li   class="active"><a th:href="@{/User/Index}">Книги</a></li>
+                    <li><a th:href="@{/User/Order}">Заказы</a></li>
+                    <li  ><a th:href="@{/Admin/Index}">Панель админа</a></li>
+                    <li  ><a th:href="@{/Employee/Index}">Панель сотрудника</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</header>
+<body>
+<div>
+    <form th:method="POST" th:action="@{/User/Index}">
+        <div class="input-group">
+            <div class="form-outline">
+                <input placeholder="Название книги:" class="form-control p-2" type="text" name="name"/>
+            </div>
+            <div class="form-outline">
+                <select class="form-select h-100" name="address">
+                    <div th:each="object : ${objectsShop}">
+                        <option th:text="${object.address}" th:value="${object.address}"></option>
+                    </div>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                🔍
+            </button>
+        </div>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Номер</th>
+        <th>Название</th>
+        <th>Цена</th>
+        <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="object : ${objectsBook}">
+        <td th:text="${object.idBook}"></td>
+        <td th:text="${object.name}"></td>
+        <td th:text="${object.price}"></td>
+        <td>
+            <a class="btn btn-light" th:href="@{/User/Book/{id}(id=${object.idBook})}">
+                📄
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

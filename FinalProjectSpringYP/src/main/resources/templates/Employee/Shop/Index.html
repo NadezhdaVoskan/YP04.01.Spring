@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Магазин</title>
+    <link rel="stylesheet" th:href="@{/site.css}">
+</head>
+<header>
+    <div class="wrap">
+        <div class="header">
+            <div class="nav">
+                <ul>
+                    <li ><a th:href="@{/Employee/Book/Index}">Товары</a></li>
+                    <li  ><a th:href="@{/Employee/Genre/Index}">Жанр</a></li>
+                    <li  ><a th:href="@{/Employee/TypeLiterature/Index}">Тип литературы</a></li>
+                    <li  ><a th:href="@{/Employee/Schedule/Index}">График</a></li>
+                    <li  class="active"><a th:href="@{/Employee/Shop/Index}">Магазин</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</header>
+<body>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Номер</th>
+        <th>Адрес</th>
+        <th>Книга</th>
+        <th>График</th>
+        <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="object : ${objects}">
+        <td th:text="${object.idShop}"></td>
+        <td th:text="${object.address}"></td>
+        <td th:text="${object.book.name}"></td>
+        <td th:text="${object.schedule.schedule}"></td>
+        <td>
+            <a class="btn btn-light" th:href="@{/Employee/Shop/Index/{id}(id=${object.idShop})}">🗑️</a>
+            |
+            <a class="btn btn-light" th:href="@{/Employee/Shop/Update/{id}(id=${object.idShop})}">🔄</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h1></h1>
+<a class="buttonstyle" href="/Employee/Shop/Add">Создать</a>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Книги</title>
+    <link rel="stylesheet" th:href="@{/site.css}">
+</head>
+
+<header>
+    <div class="wrap">
+        <div class="header">
+            <div class="nav">
+                <ul>
+                    <li  class="active"><a th:href="@{/User/Index}">Книги</a></li>
+                    <li><a th:href="@{/User/Order}">Заказы</a></li>
+                    <li  ><a th:href="@{/Admin/Index}">Панель админа</a></li>
+                    <li  ><a th:href="@{/Employee/Index}">Панель сотрудника</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</header>
+<body>
+
+<main class="container-md" th:each="object : ${objectBook}">
+    <form th:method="POST" th:action="@{/User/Book/{id}(id=${object.idBook})}">
+        <h1 th:text="${object.name}"/>
+        <div  class="form-group">
+            <br/>
+            <h4 th:text="${object.author}"/>
+            <br/>
+            <h4 th:text="${object.description}"/>
+            <br/>
+            <h4 th:text="${object.price}"/>
+            <br/>
+            <h4 th:text="${object.bookTypeLiterature.nameTypeLiterature}"/>
+            <br/>
+            <h4 th:text="${object.bookGenre.nameGenre}"/>
+            <br/>
+            <button type="submit"  class="operator btn btn-info">Добавить в заказ</button>
+        </div>
+    </form>
+</main>
+</body>
+</html>

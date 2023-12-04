@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Книги</title>
+    <link rel="stylesheet" th:href="@{/site.css}">
+</head>
+<header>
+    <div class="wrap">
+        <div class="header">
+            <div class="nav">
+                <ul>
+                    <li class="active"><a th:href="@{/Employee/Book/Index}">Товары</a></li>
+                    <li   ><a th:href="@{/Employee/Genre/Index}">Жанр</a></li>
+                    <li  ><a th:href="@{/Employee/TypeLiterature/Index}">Тип литературы</a></li>
+                    <li ><a th:href="@{/Employee/Schedule/Index}">График</a></li>
+                    <li  ><a th:href="@{/Employee/Shop/Index}">Магазин</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</header>
+<body>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Номер</th>
+        <th>Название</th>
+        <th>Автор</th>
+        <th>Описание</th>
+        <th>Цена</th>
+        <th>Жанр</th>
+        <th>Тип литературы</th>
+        <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="object : ${objects}">
+        <td th:text="${object.idBook}"></td>
+        <td th:text="${object.name}"></td>
+        <td th:text="${object.author}"></td>
+        <td th:text="${object.description}"></td>
+        <td th:text="${object.price}"></td>
+        <td th:text="${object.bookGenre.nameGenre}"></td>
+        <td th:text="${object.bookTypeLiterature.nameTypeLiterature}"></td>
+        <td>
+            <a class="btn btn-light" th:href="@{/Employee/Book/Index/{id}(id=${object.idBook})}">🗑️</a>
+            |
+            <a class="btn btn-light" th:href="@{/Employee/Book//Update/{id}(id=${object.idBook})}">🔄</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h1></h1>
+<a class="buttonstyle" href="/Employee/Book/Add">Создать</a>
+</body>
+</html>

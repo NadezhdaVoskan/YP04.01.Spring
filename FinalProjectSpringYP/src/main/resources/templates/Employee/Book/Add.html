@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Книги</title>
+    <link rel="stylesheet" th:href="@{/site.css}">
+</head>
+<header>
+    <div class="wrap">
+        <div class="header">
+            <div class="nav">
+                <ul>
+                    <li class="active"><a th:href="@{/Employee/Book/Index}">Товары</a></li>
+                    <li   ><a th:href="@{/Employee/Genre/Index}">Жанр</a></li>
+                    <li  ><a th:href="@{/Employee/TypeLiterature/Index}">Тип литературы</a></li>
+                    <li ><a th:href="@{/Employee/Schedule/Index}">График</a></li>
+                    <li  ><a th:href="@{/Employee/Shop/Index}">Магазин</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</header>
+<body>
+<main class="container-md">
+    <h1>Добавление</h1>
+    <form th:method="POST" th:action="@{/Employee/Book/Add}" th:object="${book}">
+        <input placeholder="Название продукта:" type="text" class="form-control p-2" th:field="*{name}"/>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></span>
+        <br/>
+        <input placeholder="Автор:" type="text" class="form-control p-2" th:field="*{author}"/>
+        <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" style="color: red"></span>
+        <br/>
+        <input placeholder="Описание:" type="text" class="form-control p-2" th:field="*{description}"/>
+        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color: red"></span>
+        <br/>
+        <input placeholder="Цена:" type="number" step="any" class="form-control p-2" th:field="*{price}"/>
+        <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" style="color: red"></span>
+        <br/>
+        <select class="form-select" name="idTypeLiterature">
+            <div th:each="object : ${objectsTypeLiterature}">
+                <option th:text="${object.nameTypeLiterature}" th:value="${object.idBookTypeLiterature}"></option>
+            </div>
+        </select>
+        <span th:if="${#fields.hasErrors('bookTypeLiterature')}" th:errors="*{bookTypeLiterature}" style="color: red"></span>
+        <br/>
+        <select class="form-select" name="idGenre">
+            <div th:each="object : ${objectsGenre}">
+                <option th:text="${object.nameGenre}" th:value="${object.idBookGenre}"></option>
+            </div>
+        </select>
+        <span th:if="${#fields.hasErrors('bookGenre')}" th:errors="*{bookGenre}" style="color: red"></span>
+        <br/>
+        <button type="submit"  class="buttonstyle">Добавить</button>
+    </form>
+</main>
+</body>
+</html>

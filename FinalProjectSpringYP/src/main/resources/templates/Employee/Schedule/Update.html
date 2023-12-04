@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Расписание</title>
+    <link rel="stylesheet" th:href="@{/site.css}">
+</head>
+<header>
+    <div class="wrap">
+        <div class="header">
+            <div class="nav">
+                <ul>
+                    <li ><a th:href="@{/Employee/Book/Index}">Товары</a></li>
+                    <li  ><a th:href="@{/Employee/Genre/Index}">Жанр</a></li>
+                    <li  ><a th:href="@{/Employee/TypeLiterature/Index}">Тип литературы</a></li>
+                    <li  class="active"><a th:href="@{/Employee/Schedule/Index}">График</a></li>
+                    <li  ><a th:href="@{/Employee/Shop/Index}">Магазин</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</header>
+<body>
+<main class="container-md">
+    <h1>Редактирование</h1>
+    <form th:method="POST" th:action="@{/Employee/Schedule/Update/{id}(id=${object.getIdSchedule()})}" th:object="${object}">
+        <input placeholder="График работы:" type="text" class="form-control p-2" th:field="*{schedule}"/>
+        <span th:if="${#fields.hasErrors('schedule')}" th:errors="*{schedule}" style="color: red"></span>
+        <br/>
+        <button type="submit"  class="buttonstyle">Сохранить</button>
+    </form>
+</main>
+</body>
+</html>

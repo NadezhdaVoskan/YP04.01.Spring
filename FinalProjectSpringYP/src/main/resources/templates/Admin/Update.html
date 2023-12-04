@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ</title>
+    <link rel="stylesheet" th:href="@{/site.css}">
+</head>
+<body>
+<main class="container-md">
+    <h1>Редактирование</h1>
+    <form th:method="POST" th:action="@{/Admin/Update/{id}(id=${user.getIdUser()})}" th:object="${user}">
+        <input placeholder="Логин:" type="text" class="form-control p-2" th:field="*{username}" disabled/>
+        <br/>
+        <div th:each="role : ${roles}">
+            <input type="checkbox" th:id="${role}"
+                   th:name="${'roles[]'}" th:value="${role}"
+                   th:checked="${#lists.contains(user.roles,role)}">
+
+            <label th:text="${role}"></label>
+        </div>
+        <br/>
+        <button type="submit"  class="operator btn btn-info">Сохранить</button>
+    </form>
+</main>
+</body>
+</html>

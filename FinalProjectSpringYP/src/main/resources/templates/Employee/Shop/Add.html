@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Магазин</title>
+    <link rel="stylesheet" th:href="@{/site.css}">
+</head>
+<header>
+    <div class="wrap">
+        <div class="header">
+            <div class="nav">
+                <ul>
+                    <li ><a th:href="@{/Employee/Book/Index}">Товары</a></li>
+                    <li  ><a th:href="@{/Employee/Genre/Index}">Жанр</a></li>
+                    <li  ><a th:href="@{/Employee/TypeLiterature/Index}">Тип литературы</a></li>
+                    <li  ><a th:href="@{/Employee/Schedule/Index}">График</a></li>
+                    <li  class="active"><a th:href="@{/Employee/Shop/Index}">Магазин</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</header>
+<body>
+<main class="container-md">
+    <h1>Добавление</h1>
+    <form th:method="POST" th:action="@{/Employee/Shop/Add}" th:object="${shop}">
+        <input placeholder="Адрес:" type="text" class="form-control p-2" th:field="*{address}"/>
+        <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}" style="color: red"></span>
+        <br/>
+        <select class="form-select" name="idBook">
+            <div th:each="object : ${objectsBook}">
+                <option th:text="${object.name}" th:value="${object.idBook}"></option>
+            </div>
+        </select>
+        <br/>
+        <select class="form-select" name="idSchedule">
+            <div th:each="object : ${objectsSchedule}">
+                <option th:text="${object.schedule}" th:value="${object.idSchedule}"></option>
+            </div>
+        </select>
+        <br/>
+        <button type="submit"  class="buttonstyle">Добавить</button>
+    </form>
+</main>
+</body>
+</html>

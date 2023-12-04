@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <link rel="stylesheet" th:href="@{/site.css}">
+</head>
+<body>
+<main class="container-md">
+    <h1>Авторизация</h1>
+    <form method="post" th:action="@{/Authorization}">
+        <input placeholder="Логин:" type="text" class="form-control" name="username"/>
+        <br/>
+        <input placeholder="Пароль:" type="password" class="form-control" name="password"/>
+        <br/>
+        <button type="submit" class="buttonstyle2" value="Регистрация">Войти</button>
+        <br/>
+        <div class="account-message">
+            <a href="/Registration">
+                Нет аккаунта?
+            </a>
+        </div>
+        <label th:if="${message}" th:text="${message}"/>
+    </form>
+</main>
+</body>
+</html>

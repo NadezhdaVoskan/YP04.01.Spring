@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказы</title>
+    <link rel="stylesheet" th:href="@{/site.css}">
+</head>
+
+<header>
+    <div class="wrap">
+        <div class="header">
+            <div class="nav">
+                <ul>
+                    <li ><a th:href="@{/User/Index}">Книги</a></li>
+                    <li  class="active"><a th:href="@{/User/Order}">Заказы</a></li>
+                    <li  ><a th:href="@{/Admin/Index}">Панель админа</a></li>
+                    <li  ><a th:href="@{/Employee/Index}">Панель сотрудника</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</header>
+<body>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Название</th>
+        <th>Автор</th>
+        <th>Цена</th>
+        <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="object : ${objectsUserBuy}">
+        <td th:text="${object.book.name}"></td>
+        <td th:text="${object.book.author}"></td>
+        <td th:text="${object.book.price}"></td>
+        <td>
+            <a class="btn btn-light" th:href="@{/User/Order/{id}(id=${object.idUserBuy})}">🗑️</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
